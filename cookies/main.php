@@ -44,7 +44,7 @@ function drawCookiePreventionPanel() {
 			}
 			#cookie-prevent-close {
 				position: absolute;
-				right: 5px; 
+				left: 5px; 
 				bottom: calc(50% - 0.5em);
 				cursor: pointer;
 			}
