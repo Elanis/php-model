@@ -1,7 +1,10 @@
+<?php 
+$debut = round(microtime(true) * 1000);
+?>
 <!DOCTYPE html>
 <!-- 
 	Code by Elanis
-	Copyright 2018-<?php echo date('Y'); ?> 
+	Copyright 2018-<?= date('Y') ?> 
 	Don't copy this without permission
 	I hope this code is readable.
 -->
@@ -48,4 +51,5 @@
 			}
 		?>
 	</body>
+	<!-- Page generated in <?= ($debut - round(microtime(true) * 1000)) ?> -->
 </html>
