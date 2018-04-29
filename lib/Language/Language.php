@@ -92,11 +92,11 @@ class Language {
 	 * Import (require) all language files from selected language
 	 */
 	private function importLanguageFiles() {
-		$filesList = scandir('./lib/lang/'.$this->language);
+		$filesList = scandir(DIR_LANG.$this->language);
 		foreach ($filesList as $file_key => $file_value) {
 			$parts = explode(".",$file_value);
 			if($parts[1]=="php") {
-				require_once('./lib/lang/'.$this->language.'/'.$file_value);
+				require_once(DIR_LANG.$this->language.DIRECTORY_SEPARATOR.$file_value);
 			}
 		}
 	}
