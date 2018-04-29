@@ -1,5 +1,7 @@
 <?php 
 $debut = round(microtime(true) * 1000);
+
+$lang = new Language(); // Init Translation system
 ?>
 <!DOCTYPE html>
 <!-- 
@@ -23,33 +25,43 @@ $debut = round(microtime(true) * 1000);
 	</head>
 	<body>
 		<?php
-			if($data['readCache']) { // Read HTML
-				readfile($data['cacheName']);
+			if($pageData['readCache']) { // Read HTML
+				readfile($pageData['cacheName']);
 			} else { // Read PHP
-				if(file_exists(DIR_VIEW.$data['pageName'])) {
-					if($data['writeCache']) {
+				include_once(FILE_CONFIG);
+
+				if(file_exists(DIR_VIEW.$pageData['pageName']) || file_exists(DIR_CTRL.$pageData['pageName'])) {
+					if($pageData['writeCache']) {
 						ob_start(); // ouverture du tampon
 					}
 
-					if(file_exists(DIR_CTRL.$data['pageName'])) {
-						include(DIR_CTRL.$data['pageName']);
+					if(file_exists(DIR_CTRL.$pageData['pageName'])) {
+						include(DIR_CTRL.$pageData['pageName']);
 					}
 
-					include(DIR_VIEW.$data['pageName']);
+					if(file_exists(DIR_VIEW.$pageData['pageName'])) {
+						include(DIR_VIEW.$pageData['pageName']);
+					} else {
+						http_response_code(404);
+						include_once(DIR_ERRORS.'404.html');
+						die();
+					}
 
-					if($data['writeCache']) {
+					if($pageData['writeCache']) {
 						$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne
 						ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
 
-						file_put_contents($data['cacheName'], $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($data['cacheName'])
+						file_put_contents($pageData['cacheName'], $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($pageData['cacheName'])
 
 						echo $pageContent;
 					}
 				} else {
-					readfile(DIR_ERRORS.'404.html');
+					http_response_code(404);
+					include_once(DIR_ERRORS.'404.html');
+					die();
 				}
 			}
 		?>
 	</body>
-	<!-- Page generated in <?= ($debut - round(microtime(true) * 1000)) ?> -->
+	<!-- Page generated in <?= ($debut - round(microtime(true) * 1000)) ?> ms -->
 </html>
