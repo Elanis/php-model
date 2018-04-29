@@ -5,18 +5,24 @@
 ************************************************/
 
 class MongoInterface {
-	private $manager;
+	protected $manager;
 
 	/**
 	 * Connect to a database
 	 *
 	 * @param      string  $dbURL  The database url
 	 */
-	private function connect($dbURL) {
-		if(!isset($dbURL)||$dbURL=="") { //Wrong Use !
-			die('DATABASE ERROR: All needed informations are not given !');
-		}
+	protected function connect($dbURL) {
+		global $config; 
 
+		if(!isset($dbURL) || $dbURL=="") {
+			if(!isset($config['mongoURL']) || $config['mongoURL']=="") { 
+				die('DATABASE ERROR: All needed informations are not given !');
+			}
+
+			$dbURL = $config['mongoURL'];
+		}
+		
 		if(!extension_loaded("mongodb")) {
 			die('ERROR: MONGO EXTENSION NOT LOADED !');
 		} else {
@@ -34,7 +40,7 @@ class MongoInterface {
 	 *
 	 * @param      string  $dbURL  The database url
 	 */
-	public function __construct($dbURL) {
+	public function __construct($dbURL="") {
 		$this->connect($dbURL); //Il faut se connecter à la BDD
     }
 
