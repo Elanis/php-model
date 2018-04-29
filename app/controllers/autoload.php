@@ -7,7 +7,8 @@ spl_autoload_register(function($class){
 	
 	$paths = array(
 		DIR_CTRL,
-		DIR_LIB
+		DIR_LIB,
+		DIR_MODEL
 	);
 	
 	foreach($paths as $path) {
