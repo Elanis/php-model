@@ -11,7 +11,10 @@ define('FILE_CONFIG', '..'.DIRECTORY_SEPARATOR.'config.php');
 
 require_once DIR_CTRL.'autoload.php';
 
+include_once(FILE_CONFIG);
+
 $lang = new Language(); // Init Translation system
+
 define('DIR_CACHE', '..'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.$lang->getLanguage().'-');
 
 $currentPage = (isset($_GET['route']) && $_GET['route'] != "")?$_GET['route']:"index";

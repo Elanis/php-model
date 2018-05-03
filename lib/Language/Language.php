@@ -5,24 +5,28 @@
 =============================================== */
 
 class Language {
-	private $languageList = [
-		'fr' => 'Francais',
-		'en' => 'English',
-		//'de' => 'Deutsch',
-		//'ru' => 'русский'
-	];
-	private $defaultLanguage = "en";
-	private $language = "en";
+	private $languageList;
+	private $defaultLanguage;
+	private $language;
 
 	/**
 	 * Constructor
 	 */
 	function __construct() {
+		global $config;
+
+		$this->languageList = $config["languageList"];
+
+		foreach ($this->languageList as $lang_key => $lang_value) {
+			$this->defaultLanguage = $lang_key;
+			$this->language = $lang_key;
+			break;
+		}
+
 		$this->setDefaultLanguage();
 		$this->setLanguage();
 		$this->importLanguageFiles();
 	}
-
 	/**
 	 * Sets the default language.
 	 */

@@ -112,4 +112,21 @@ class MongoInterface {
 			$this->manager->executeBulkWrite($db.'.'.$doc, $bulkUsers);
 		} 
 	}
+
+	/**
+	 * Count a collection
+	 *
+	 * @param      <type>  $collection  The collection
+	 * @param      <type>  $query       The query selector
+	 *
+	 * @return     <type>  count
+	 */
+	protected function count($collection, $query) {
+		if(is_string($collection) && is_array($query)) {
+			$cmd = new MongoDB\Driver\Command(["count" => $collection, "query" => $query ]);
+			$result = $this->manager->executeCommand('hashBase', $cmd);
+
+			return json_decode(json_encode($result->toArray()[0]), true)['n'];	
+		} 
+	}
 }
