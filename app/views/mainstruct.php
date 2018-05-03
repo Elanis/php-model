@@ -1,7 +1,5 @@
 <?php 
 $debut = round(microtime(true) * 1000);
-
-$lang = new Language(); // Init Translation system
 ?>
 <!DOCTYPE html>
 <!-- 
@@ -20,8 +18,7 @@ $lang = new Language(); // Init Translation system
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
-		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./lib/css/style.css"/>
-		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./lib/graph/style.css"/>
+		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./css/style.css"/>
 	</head>
 	<body>
 		<?php
@@ -40,12 +37,16 @@ $lang = new Language(); // Init Translation system
 					}
 
 					if(file_exists(DIR_VIEW.$pageData['pageName'])) {
+						include(DIR_VIEW.'menu.php');
+						
 						include(DIR_VIEW.$pageData['pageName']);
 					} else {
 						http_response_code(404);
 						include_once(DIR_ERRORS.'404.html');
 						die();
 					}
+
+					include_once(DIR_VIEW.'footer.php');
 
 					if($pageData['writeCache']) {
 						$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne

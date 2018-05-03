@@ -1,4 +1,4 @@
 <?php
 $config = array(
-	"mongoURL" => "",
+	"mongoURL" => "***REMOVED***",
 );
