@@ -8,7 +8,7 @@ $debut = round(microtime(true) * 1000);
 	Don't copy this without permission
 	I hope this code is readable.
 -->
-<html>
+<html lang="<?= $lang->getLanguage(); ?>">
 	<head>
 		<title>Nom du site</title>
 		<meta charset="UTF-8">
