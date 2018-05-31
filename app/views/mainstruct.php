@@ -64,5 +64,5 @@ $debut = round(microtime(true) * 1000);
 			}
 		?>
 	</body>
-	<!-- Page generated in <?= ($debut - round(microtime(true) * 1000)) ?> ms -->
+	<!-- Page generated in <?= (round(microtime(true) * 1000) - $debut) ?> ms -->
 </html>
