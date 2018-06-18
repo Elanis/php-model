@@ -24,8 +24,6 @@ abstract class Security {
 		$part1 = sha1($data);
 		$part2 = $token."42".$part1;
 		$part3 = hash('ripemd160', $part2);
-		$part4 = hash('whirlpool', $part3."69");
-
-		return $part4;
+		return hash('whirlpool', $part3."69");
 	}
 }
