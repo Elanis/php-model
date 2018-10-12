@@ -19,6 +19,8 @@ $debut = round(microtime(true) * 1000);
 
 		<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
 		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./css/style.css"/>
+
+		<?php $lang->drawCached(); ?>
 	</head>
 	<body>
 		<?php
