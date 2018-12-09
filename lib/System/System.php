@@ -5,7 +5,7 @@ abstract class System {
 	 *
 	 * @return     <type>  Number of core.
 	 */
-	static function countCore() {
+	public static function countCore() {
 	        if (!($num_cores = shell_exec('/bin/grep -c ^processor /proc/cpuinfo'))) {
 	            if (!($num_cores = trim(shell_exec('/usr/bin/nproc')))) {
 	                $num_cores = 1;
@@ -24,7 +24,7 @@ abstract class System {
 	 *
 	 * @return     array  stats
 	 */
-	static function CpuStats() {
+	public static function CpuStats() {
 		$cpu = array();
 		
 		//Nombre de Coeurs
