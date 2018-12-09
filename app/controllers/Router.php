@@ -16,8 +16,8 @@ class Router {
 		$data['pageName'] = $pagename.'.php';
 		$data['cacheName'] = $this->buildCacheName($pagename);
 
-		if(file_exists($data['cacheName']) && 
-			filemtime($data['cacheName']) > (time() - $this->cacheTime) && 
+		if(file_exists($data['cacheName']) &&
+			filemtime($data['cacheName']) > (time() - $this->cacheTime) &&
 			!in_array($pagename, $this->cacheBlacklist)) {
 
 			$data['readCache'] = true;
