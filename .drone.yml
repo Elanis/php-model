@@ -21,9 +21,9 @@ steps:
     webhook_token: ***REMOVED***
     message: >
       {{#success build.status}}
-        Build on custom Framework on branch **{{build.branch}}** ({{truncate build.commit 8}}) succeeded.
+        Build on **PHP Custom Framework** on branch **{{build.branch}}** ({{truncate build.commit 8}}) succeeded.
       {{else}}
-        Build on custom Framework on branch **{{build.branch}}** ({{truncate build.commit 8}}) failed.
+        Build on **PHP Custom Framework** on branch **{{build.branch}}** ({{truncate build.commit 8}}) failed.
       {{/success}}
   when:
     branch:
