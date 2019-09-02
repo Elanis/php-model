@@ -2,8 +2,25 @@ kind: pipeline
 name: galactae-server
 
 steps:
+- name: pingone
+  image: docker:git
+  commands:
+    ## this will show you if ``my-git`` is resolved.
+    - ping -c 1 my-git
+
+- name: pingtwo
+  image: docker:git
+  ## Alas this will also be needed, and is NOT supported yet
+  networks:
+   - internal
+  commands:
+    ## this will show you if ``my-git`` is resolved.
+    - ping -c 1 my-git
+
 - name: sonarqube
   image: aosapps/drone-sonar-plugin
+  networks:
+    - internal
   settings:
     sonar_host: ***REMOVED***
     sonar_token: ***REMOVED***
