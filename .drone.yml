@@ -8,8 +8,10 @@ steps:
     ## this will show you if ``sonarqube`` is resolved.
     - ping -c 1 sonarqube
   when:
-    branch:
-    - master
+    status: 
+    - changed
+    - failure
+    - success
 
 - name: pingtwo
   image: docker:git
@@ -20,8 +22,10 @@ steps:
     ## this will show you if ``sonarqube`` is resolved.
     - ping -c 1 sonarqube
   when:
-    branch:
-    - master
+    status: 
+    - changed
+    - failure
+    - success
 
 - name: sonarqube
   image: aosapps/drone-sonar-plugin
@@ -49,8 +53,6 @@ steps:
         Build on **PHP Custom Framework** on branch **{{build.branch}}** ({{truncate build.commit 8}}) failed.
       {{/success}}
   when:
-    branch:
-    - master
     event:
     - push
     status: 
