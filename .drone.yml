@@ -5,8 +5,11 @@ steps:
 - name: pingone
   image: docker:git
   commands:
-    ## this will show you if ``my-git`` is resolved.
-    - ping -c 1 my-git
+    ## this will show you if ``sonarqube`` is resolved.
+    - ping -c 1 sonarqube
+  when:
+    branch:
+    - master
 
 - name: pingtwo
   image: docker:git
@@ -14,15 +17,18 @@ steps:
   networks:
    - internal
   commands:
-    ## this will show you if ``my-git`` is resolved.
-    - ping -c 1 my-git
+    ## this will show you if ``sonarqube`` is resolved.
+    - ping -c 1 sonarqube
+  when:
+    branch:
+    - master
 
 - name: sonarqube
   image: aosapps/drone-sonar-plugin
   networks:
     - internal
   settings:
-    sonar_host: ***REMOVED***
+    sonar_host: ***REMOVED***/
     sonar_token: ***REMOVED***
     level: TRACE
     showProfiling: true
