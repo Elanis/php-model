@@ -27,7 +27,7 @@ function percentCircle(percent,name,color) {
 
 	let lastend= 0;
 	const offset = Math.PI / 2;
-	for(x=0; x < datalist.length; x++) {
+	for(let x=0; x < datalist.length; x++) {
 		const thispart = datalist[x];
 		ctx.beginPath();
 		ctx.fillStyle = colist[x];
