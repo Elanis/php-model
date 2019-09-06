@@ -32,7 +32,7 @@ steps:
   networks:
     - internal
   settings:
-    sonar_host: ***REMOVED***/
+    sonar_host: ***REMOVED***
     sonar_token: ***REMOVED***
     level: TRACE
     showProfiling: true
